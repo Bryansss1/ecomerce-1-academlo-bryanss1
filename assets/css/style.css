@@ -405,7 +405,7 @@ justify-content: space-around;
 }
 .boton-eliminar-carrito{
   background: none;
-  color: none;
+  color: var(--first-color);
 }
 .boton-eliminar-carrito:hover{
   background: none;
