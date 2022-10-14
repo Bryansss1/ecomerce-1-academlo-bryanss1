@@ -412,7 +412,7 @@ justify-content: space-around;
   box-shadow: none;
 }
 .boton-eliminar-carrito i{
-  color: var(--button-color);
+  color: var(--first-color);
 }
 .totales-carrito{
   margin-top: 1rem;
