@@ -27,7 +27,7 @@ const items = [
   //CARGA DE DOM
     document.addEventListener("DOMContentLoaded",()=>{
       loadCarga()
-     showproducts()
+     
       if (localStorage.getItem('carrito')){
         carrito = JSON.parse(localStorage.getItem('carrito'))
         actualizarCarrito()
@@ -90,7 +90,7 @@ let carrito=[]
  
  const productosPadre=document.getElementById("cajapadre-productos")
   
- function showproducts(){
+ 
   let item=``
    items.forEach(producto=>{
       item+=`<div class="product-card">
@@ -103,38 +103,20 @@ let carrito=[]
       <span class="btn-add" id="${producto.id}">+</span>
       </div>
       `
-
-    })
+  })
+  
     productosPadre.innerHTML=item
     const boton=document.querySelectorAll('.btn-add')
-  
-    const filtradoss=document.querySelector(".full")
-filtradoss.addEventListener("click",()=>{
-    let item=``
-    items.forEach(prod=>{
-        item+=`<div class="product-card">
-        <img src=${prod.image} alt="">
-        <div class="info-product">
-        <p>$${prod.price}.00</p>
-        <p>STONKS |${prod.quantity}</p>
-        </div>
-        <p>${prod.name}</p>
-        <span class="btn-add" id="${prod.id}">+</span>
-        </div>
-        `
-      }
-    ) 
-    productosPadre.innerHTML=item
-})
-
-
-
-    boton.forEach(btn =>{
+  boton.forEach(btn =>{
       btn.addEventListener("click",()=>{
         agregarAlcarrito(parseInt(btn.id))
       })
     })
-  }
+
+
+  
+
+    
 //filtrado aqui muy pronto...
 const filtrado1=document.querySelector(".productosFiltrado1")
 filtrado1.addEventListener("click",()=>{
