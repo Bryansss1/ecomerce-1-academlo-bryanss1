@@ -20,14 +20,14 @@ const items = [
       name: 'Sweatshirts',
       price: 24.00,
       image: 'assets/images/featured3.png',
-      category: 'shirts',
+      category: 'Swearshirts',
       quantity: 20
     }
   ]
   //CARGA DE DOM
     document.addEventListener("DOMContentLoaded",()=>{
       loadCarga()
-     
+     showproducts()
       if (localStorage.getItem('carrito')){
         carrito = JSON.parse(localStorage.getItem('carrito'))
         actualizarCarrito()
@@ -89,6 +89,8 @@ let carrito=[]
 //SECCION DE PRODUCTOS
  
  const productosPadre=document.getElementById("cajapadre-productos")
+  
+ function showproducts(){
   let item=``
    items.forEach(producto=>{
       item+=`<div class="product-card">
@@ -101,24 +103,101 @@ let carrito=[]
       <span class="btn-add" id="${producto.id}">+</span>
       </div>
       `
+
     })
     productosPadre.innerHTML=item
-
     const boton=document.querySelectorAll('.btn-add')
-    
-    boton.forEach(btn =>{
+  
+    const filtradoss=document.querySelector(".full")
+filtradoss.addEventListener("click",()=>{
+    let item=``
+    items.forEach(prod=>{
+        item+=`<div class="product-card">
+        <img src=${prod.image} alt="">
+        <div class="info-product">
+        <p>$${prod.price}.00</p>
+        <p>STONKS |${prod.quantity}</p>
+        </div>
+        <p>${prod.name}</p>
+        <span class="btn-add" id="${prod.id}">+</span>
+        </div>
+        `
+      }
+    ) 
+    productosPadre.innerHTML=item
+})
 
+
+
+    boton.forEach(btn =>{
       btn.addEventListener("click",()=>{
         agregarAlcarrito(parseInt(btn.id))
       })
     })
-  
+  }
 //filtrado aqui muy pronto...
+const filtrado1=document.querySelector(".productosFiltrado1")
+filtrado1.addEventListener("click",()=>{
+    let itemz=``
+    items.forEach(prod=>{
+      if(prod.category==='hoodies'){
+        itemz+=`<div class="product-card">
+        <img src=${prod.image} alt="">
+        <div class="info-product">
+        <p>$${prod.price}.00</p>
+        <p>STONKS |${prod.quantity}</p>
+        </div>
+        <p>${prod.name}</p>
+        <span class="btn-add" id="${prod.id}">+</span>
+        </div>
+        `
+      }
+    }) 
+    productosPadre.innerHTML=itemz
+})
+
+const filtrado2=document.querySelector(".productosFiltrado2")
+filtrado2.addEventListener("click",()=>{
+    let item=``
+    items.forEach(prod=>{
+      if(prod.category==='shirts'){
+        item+=`<div class="product-card">
+        <img src=${prod.image} alt="">
+        <div class="info-product">
+        <p>$${prod.price}.00</p>
+        <p>STONKS |${prod.quantity}</p>
+        </div>
+        <p>${prod.name}</p>
+        <span class="btn-add" id="${prod.id}">+</span>
+        </div>
+        `
+      }
+    }) 
+    productosPadre.innerHTML=item
+})
+
+const filtrado3=document.querySelector(".productosFiltrado3")
+filtrado3.addEventListener("click",()=>{
+    let itemzz=``
+    items.forEach(prod=>{
+      if(prod.category==='Swearshirts'){
+        itemzz+=`<div class="product-card">
+        <img src=${prod.image} alt="">
+        <div class="info-product">
+        <p>$${prod.price}.00</p>
+        <p>STONKS |${prod.quantity}</p>
+        </div>
+        <p>${prod.name}</p>
+        <span class="btn-add" id="${prod.id}">+</span>
+        </div>
+        `
+      }
+    }) 
+    productosPadre.innerHTML=itemzz
+})
 
 
-
-
-//CIERRE
+//CIERR
 const agregarAlcarrito=(proId)=>{
   const existe=carrito.some(prod=>prod.id === proId)
 
